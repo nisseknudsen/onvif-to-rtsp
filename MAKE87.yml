@@ -1,6 +1,25 @@
 build_kit:
   name: python3
   version: latest
-outbound_topics:
-  - name: HELLO_WORLD_MESSAGE
-    message_type: make87_messages.text.text_plain.PlainText
+requester_endpoints:
+  - name: RTSP_STREAM
+    requester_message_type: make87_messages.transport.rtsp.RTSPRequest
+    provider_message_type: make87_messages.primitive.bool.Bool
+peripheral_requirements:
+  - name: ONVIF_DEVICE
+    peripheral_type: Camera
+config:
+  values:
+    - name: ONVIF_USERNAME
+      description: "Username used for onvif login."
+      required: true
+      secret: false
+    - name: ONVIF_PASSWORD
+      description: "Password used for onvif login."
+      required: true
+      secret: true
+    - name: PROFILE_INDEX
+      description: "Index of the profile to select from all available ones.Provide comma-separated values for multiple profiles."
+      required: false
+      secret: false
+      default_value: "0"
